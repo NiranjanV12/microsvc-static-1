@@ -41,7 +41,7 @@ apply plugin: 'com.palantir.docker'
 group = 'microsvc'
 
 bootJar {
-    baseName = 'static1'
+    baseName = 'microsvc-static-1'
     version =  ''
 }
 
