@@ -10,7 +10,11 @@ app:
  env:
   color: green
   servUrl1: http://localhost:7051/microsvc-static-2
-
+  at_username: user1
+  at_password: pass@123
+  at_grant_type: password
+  at_client_id: myclient
+  at_Url: http://192.168.0.111:8080/auth/realms/myrealm/protocol/openid-connect/token
 
 logging:
     file:
@@ -23,6 +27,6 @@ logging:
         org.springframework.web: ERROR
         com.microsvc: INFO
         org.hibernate: ERROR
-    pattern:
-       console: 
+#    pattern:
+#       console: 
   

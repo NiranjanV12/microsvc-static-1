@@ -17,8 +17,56 @@ public class ApplicationEnvironmentProperties {
 
         private String servUrl1;
         private String color;
+        private String at_Url;
+        private String at_username;
+        private String at_password;
+        private String at_grant_type;
+        private String at_client_id;
+
         
-        public String getServUrl1() {
+        
+        public String getAt_Url() {
+			return at_Url;
+		}
+
+		public void setAt_Url(String at_Url) {
+			this.at_Url = at_Url;
+		}
+
+		public String getAt_username() {
+			return at_username;
+		}
+
+		public void setAt_username(String at_username) {
+			this.at_username = at_username;
+		}
+
+		public String getAt_password() {
+			return at_password;
+		}
+
+		public void setAt_password(String at_password) {
+			this.at_password = at_password;
+		}
+
+		public String getAt_grant_type() {
+			return at_grant_type;
+		}
+
+		public void setAt_grant_type(String at_grant_type) {
+			this.at_grant_type = at_grant_type;
+		}
+
+		public String getAt_client_id() {
+			return at_client_id;
+		}
+
+		public void setAt_client_id(String at_client_id) {
+			this.at_client_id = at_client_id;
+		}
+
+	
+		public String getServUrl1() {
 			return servUrl1;
 		}
 
