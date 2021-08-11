@@ -1,0 +1,42 @@
+2021-08-07 17:19:35.021  INFO 19126 --- [main] com.microsvc.static1.Static1Application  : Starting Static1Application using Java 11.0.2 on OMEN-15-ek0018tx with PID 19126 (/home/niranjanv/Downloads/static1/bin/main started by niranjanv in /home/niranjanv/Downloads/static1)
+2021-08-07 17:19:35.023  INFO 19126 --- [main] com.microsvc.static1.Static1Application  : No active profile set, falling back to default profiles: default
+2021-08-07 17:19:36.320  INFO 19126 --- [main] com.microsvc.static1.Static1Application  : Started Static1Application in 1.706 seconds (JVM running for 2.035)
+2021-08-07 17:19:49.613  INFO 19126 --- [http-nio-7050-exec-1] com.microsvc.static1.Controller          : callOtherService
+2021-08-07 17:19:49.864  INFO 19126 --- [http-nio-7050-exec-1] com.microsvc.static1.Controller          : callOtherService: callOtherService: static-2 : healthy > color: white
+2021-08-07 17:19:53.257  INFO 19126 --- [http-nio-7050-exec-2] com.microsvc.static1.Controller          : microsvc-static-1 : health
+2021-08-07 17:20:06.571  INFO 19126 --- [http-nio-7050-exec-3] com.microsvc.static1.Controller          : microsvc-static-1 : health
+2021-08-07 17:36:20.736  INFO 20928 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 20928 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 17:36:20.738  INFO 20928 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 17:36:21.894  INFO 20928 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.386 seconds (JVM running for 2.096)
+2021-08-07 17:43:28.482  INFO 22686 --- [main] com.microsvc.static1.Static1Application  : Starting Static1Application using Java 11.0.2 on OMEN-15-ek0018tx with PID 22686 (/home/niranjanv/Downloads/static1/bin/main started by niranjanv in /home/niranjanv/Downloads/static1)
+2021-08-07 17:43:28.485  INFO 22686 --- [main] com.microsvc.static1.Static1Application  : No active profile set, falling back to default profiles: default
+2021-08-07 17:43:29.984  INFO 22686 --- [main] com.microsvc.static1.Static1Application  : Started Static1Application in 1.974 seconds (JVM running for 2.642)
+2021-08-07 17:43:35.587  INFO 22686 --- [http-nio-7050-exec-1] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:47:51.169  INFO 23256 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 23256 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 17:47:51.171  INFO 23256 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 17:47:52.310  INFO 23256 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.361 seconds (JVM running for 2.088)
+2021-08-07 17:57:58.994  INFO 24272 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 24272 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 17:57:58.995  INFO 24272 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 17:58:00.171  INFO 24272 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.4 seconds (JVM running for 2.136)
+2021-08-07 17:59:26.215  INFO 22686 --- [http-nio-7050-exec-4] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:26.919  INFO 22686 --- [http-nio-7050-exec-5] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:27.206  INFO 22686 --- [http-nio-7050-exec-6] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:27.351  INFO 22686 --- [http-nio-7050-exec-7] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:40.894  INFO 22686 --- [http-nio-7050-exec-10] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:41.373  INFO 22686 --- [http-nio-7050-exec-1] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:41.598  INFO 22686 --- [http-nio-7050-exec-2] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:41.801  INFO 22686 --- [http-nio-7050-exec-3] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:42.035  INFO 22686 --- [http-nio-7050-exec-4] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 17:59:42.221  INFO 22686 --- [http-nio-7050-exec-5] com.microsvc.static1.Controller          : microsvc-static-1 : healthy
+2021-08-07 18:12:02.970  INFO 27465 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 27465 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 18:12:02.972  INFO 27465 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 18:12:04.152  INFO 27465 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.399 seconds (JVM running for 2.119)
+2021-08-07 18:15:15.157  INFO 27956 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 27956 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 18:15:15.158  INFO 27956 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 18:15:16.328  INFO 27956 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.406 seconds (JVM running for 2.147)
+2021-08-07 18:39:16.489  INFO 31095 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 31095 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 18:39:16.491  INFO 31095 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 18:39:17.657  INFO 31095 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.412 seconds (JVM running for 2.162)
+2021-08-07 18:51:12.211  INFO 32895 --- [Test worker] c.m.static1.Static1ApplicationTests      : Starting Static1ApplicationTests using Java 11.0.11 on OMEN-15-ek0018tx with PID 32895 (started by root in /home/niranjanv/Downloads/static1)
+2021-08-07 18:51:12.212  INFO 32895 --- [Test worker] c.m.static1.Static1ApplicationTests      : No active profile set, falling back to default profiles: default
+2021-08-07 18:51:13.391  INFO 32895 --- [Test worker] c.m.static1.Static1ApplicationTests      : Started Static1ApplicationTests in 1.4 seconds (JVM running for 2.118)
