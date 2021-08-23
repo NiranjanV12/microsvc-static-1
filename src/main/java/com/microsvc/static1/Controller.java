@@ -1,18 +1,19 @@
 package com.microsvc.static1;
 
+import java.util.Map;
 import java.util.logging.Level;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+//import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 import lombok.extern.java.Log;
 
@@ -21,15 +22,18 @@ import lombok.extern.java.Log;
 @Log
 @RequestMapping("/microsvc-static-1")
 
+
+
+
 public class Controller {
 
 
 private final WebClient webClient;
 private final WebClient webClient2;
-
-
 private final ApplicationEnvironmentProperties props;
 
+//@Autowired
+//private OAuth2AuthorizedClientService authorizedClientService;
 
 public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProperties props) {
 	this.props = props;
@@ -74,7 +78,7 @@ public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProp
 		return returnStr;
 	}
 	
-	
+	//secure service2 with kong JWT/OIDC?
 	@GetMapping("/callOtherServiceJWT")
 	public String callOtherServiceJWT() {
 		log.log(Level.INFO, "callOtherServiceJWT");
@@ -105,4 +109,38 @@ public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProp
 		}
 		return returnStr;
 	}
+	
+	
+
+	@GetMapping("/inspect")
+	public String inspect(
+			//OAuth2AuthenticationToken authentication
+			@RequestHeader Map<String, String> headers
+			) {
+		String returnStr = null;
+
+		try {
+			log.log(Level.INFO, "microsvc-static-1 : inspect");
+		    headers.forEach((key, value) -> {
+		        log.info(String.format("Header '%s' = %s", key, value));
+		    });
+			
+//	        OAuth2AuthorizedClient authorizedClient = this.getAuthorizedClient(authentication);
+//
+//	        log.log(Level.INFO,authorizedClient.getAccessToken().getTokenValue();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.log(Level.SEVERE," ",e);
+		}
+		
+		return returnStr;
+		
+	}
+	
+
+//    private OAuth2AuthorizedClient getAuthorizedClient(OAuth2AuthenticationToken authentication) {
+//        return this.authorizedClientService.loadAuthorizedClient(
+//            authentication.getAuthorizedClientRegistrationId(), authentication.getName());
+//    }
 }
