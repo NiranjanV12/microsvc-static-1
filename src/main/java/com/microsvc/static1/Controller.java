@@ -1,10 +1,11 @@
 package com.microsvc.static1;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 //import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,6 +49,31 @@ public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProp
 
 		try {
 			log.log(Level.INFO, "microsvc-static-1 : healthy");
+			returnStr= new StringBuffer("static-1 : healthy > color: ").append(props.getEnv().getColor()).toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.log(Level.SEVERE," ",e);
+		}
+		
+		return returnStr;
+		
+	}
+	
+	@GetMapping("/load")
+	public String load() {
+		String returnStr = null;
+		StringBuffer abcd=new StringBuffer();
+		try {
+			log.log(Level.INFO, "microsvc-static-1 : load");
+			int itrLimit=Integer.parseInt(props.getEnv().getItrLimit());
+			log.log(Level.INFO, "microsvc-static-1 : itrLimit"+itrLimit);
+
+			List<Integer> strList= new ArrayList<>();
+			for(int i=0;i<itrLimit;i++) {
+				abcd.append(i);
+				strList.add(i);
+				//System.err.println(abcd);
+			}
 			returnStr= new StringBuffer("static-1 : healthy > color: ").append(props.getEnv().getColor()).toString();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -22,10 +22,20 @@ public class ApplicationEnvironmentProperties {
         private String at_password;
         private String at_grant_type;
         private String at_client_id;
+        private String itrLimit;
+        
 
         
         
-        public String getAt_Url() {
+        public String getItrLimit() {
+			return itrLimit;
+		}
+
+		public void setItrLimit(String itrLimit) {
+			this.itrLimit = itrLimit;
+		}
+
+		public String getAt_Url() {
 			return at_Url;
 		}
 
