@@ -15,7 +15,7 @@ app:
   at_grant_type: password
   at_client_id: myclient
   at_Url: http://192.168.0.111:8080/auth/realms/myrealm/protocol/openid-connect/token
-  itrLimit: 100
+  itrLimit: 10
 
 logging:
     file:
