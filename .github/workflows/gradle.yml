@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ branch1 ]
+    branches: [ main ]
   pull_request:
-    branches: [ branch1 ]
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -31,4 +31,12 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
-        arguments: clean build
+        arguments: clean build docker
+    - name: Docker login and push
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASS }}
+      run : |
+           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io   
+           docker tag microsvc/microsvc-static-1:latest "$DOCKER_USERNAME"/microsvc-static-1:action_1"${{ env.GITHUB_RUN_NUMBER }}"
+           docker push "$DOCKER_USERNAME"/microsvc-static-1:action_1"${{ env.GITHUB_RUN_NUMBER }}"
