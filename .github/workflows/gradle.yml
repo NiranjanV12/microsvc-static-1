@@ -32,10 +32,9 @@ jobs:
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
         arguments: clean build docker
-    - name: Docker login
+    - name: Docker login and push
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASS }}
-      run : docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io    
-    - name: Push docker image    
-      run: docker push "$DOCKER_USERNAME"/microsvc-static-1:${{steps.vars.outputs.tag}}
+      run : docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io   
+            docker push "$DOCKER_USERNAME"/microsvc-static-1:${{steps.vars.outputs.tag}}
