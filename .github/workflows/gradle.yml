@@ -36,5 +36,6 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASS }}
-      run : docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io   
-            docker push "$DOCKER_USERNAME"/microsvc-static-1:${{steps.vars.outputs.tag}}
+      run : |
+           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io   
+           docker push "$DOCKER_USERNAME"/microsvc-static-1:${{steps.vars.outputs.tag}}
