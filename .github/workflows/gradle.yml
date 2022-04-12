@@ -38,4 +38,4 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASS }}
       run : |
            docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io   
-           docker push "$DOCKER_USERNAME"/microsvc-static-1:${{steps.vars.outputs.tag}}
+           docker push "$DOCKER_USERNAME"/microsvc-static-1:action_${{ GITHUB_JOB }}
