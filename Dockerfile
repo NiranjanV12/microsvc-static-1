@@ -4,8 +4,8 @@ ARG DEPENDENCY=build/dependency
 COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY ${DEPENDENCY}/META-INF /app/META-INF
 COPY ${DEPENDENCY}/BOOT-INF/classes /app
-COPY ${DEPENDENCY}/jmx_prometheus_javaagent-0.16.1.jar /app
-COPY ${DEPENDENCY}/config.yaml /app
+#COPY ${DEPENDENCY}/jmx_prometheus_javaagent-0.16.1.jar /app
+#COPY ${DEPENDENCY}/config.yaml /app
 RUN apt-get update -y && apt-get install -y lsof tar build-essential
 ADD https://github.com/jemalloc/jemalloc/releases/download/5.2.1/jemalloc-5.2.1.tar.bz2 .
 RUN tar -xvf jemalloc-5.2.1.tar.bz2 
