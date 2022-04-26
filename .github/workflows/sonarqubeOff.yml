@@ -3,11 +3,11 @@ on:
   # a pull request. 
   push:
     branches:
-      - master
+      - main
   pull_request:
       types: [opened, synchronize, reopened]
 
-name: Main Workflow
+name: sonarqubeOff
 jobs:
   sonarqube:
     runs-on: ubuntu-latest
