@@ -11,6 +11,7 @@ plugins {
 	id 'org.springframework.boot' version '2.5.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'com.microsvc'
@@ -33,13 +34,35 @@ dependencies {
 	
 //implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.5.0.RELEASE'
 //implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.5.1'
+
+// https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.5.7'
+// https://mvnrepository.com/artifact/org.mockito/mockito-core
+// https://mvnrepository.com/artifact/org.mockito/mockito-core
+testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.2.4'    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.2'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.6.2'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.6.2'
+    // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.6.2'
+    // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.6.2'
+    // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-engine
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-engine', version: '1.6.2'
+    // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy
+    testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.10.14'
+    
 	
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform() 
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
-
 
 apply plugin: 'com.palantir.docker'
 
@@ -60,3 +83,11 @@ docker {
     copySpec.from(tasks.unpack.outputs).into("dependency")
     buildArgs(['DEPENDENCY': "dependency"])
 }
+
+
+jacocoTestReport {
+   reports {
+       xml.enabled true
+   }
+}
+//test.finalizedBy jacocoTestReport
