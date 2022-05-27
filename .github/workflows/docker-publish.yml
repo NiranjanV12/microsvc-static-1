@@ -67,10 +67,9 @@ jobs:
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
         id: build-and-push
-        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
-        with:
-        run: 
-          | docker pull ghcr.io/nsdl-e-governance/hello-world:latest
+        run: |
+            docker images
+            docker pull ghcr.io/nsdl-e-governance/hello-world:latest
             docker tag ghcr.io/nsdl-e-governance/hello-world:latest ghcr.io/nsdl-e-governance/hello-world:latest2
             docker push ghcr.io/nsdl-e-governance/hello-world:latest2 
             docker images
