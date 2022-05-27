@@ -70,8 +70,8 @@ jobs:
         run: |
             docker images
             docker pull ghcr.io/nsdl-e-governance/hello-world:latest
-            docker tag ghcr.io/nsdl-e-governance/hello-world:latest ghcr.io/niranjanv12/hello-world:latest2
-            docker push ghcr.io/niranjanv12/hello-world:latest2 
+            docker tag ghcr.io/nsdl-e-governance/hello-world:latest ghcr.io/niranjanv12/hello-world:$(git rev-parse --short HEAD)
+            docker push ghcr.io/niranjanv12/hello-world:$(git rev-parse --short HEAD) 
             docker images
 
       # Sign the resulting Docker image digest except on PRs.
