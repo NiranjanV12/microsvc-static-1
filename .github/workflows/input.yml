@@ -25,7 +25,7 @@ on:
 
 jobs:
   print-tag:
-    runs-on: ubuntu-latest
+    runs-on: postgres
     if:  ${{ github.event.inputs.print_tags == 'true' }} 
     steps:
       - name: Print the input tag to STDOUT
