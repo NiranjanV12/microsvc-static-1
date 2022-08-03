@@ -13,11 +13,11 @@ jobs:
   job_id:
     runs-on: postgres
     steps:
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+#    - id: 'auth'
+#      name: 'Authenticate to Google Cloud'
+#      uses: 'google-github-actions/auth@v0'
+#      with:
+#        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
     - name: Push Docker image
       id: push-docker-image
       run: |
