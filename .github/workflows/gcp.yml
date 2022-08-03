@@ -1,0 +1,30 @@
+name: GCP
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push:
+    branches: [ my-vm2-runner ]
+
+jobs:
+  job_id:
+    runs-on: instance-1
+    steps:
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+    - name: Push Docker image
+      id: push-docker-image
+      run: |
+        docker pull gcr.io/ordinal-nectar-353205/microsvc-static-1:v6
+                
+    - name: 'Deploy to Cloud Run'
+      uses: 'google-github-actions/deploy-cloudrun@v0'
+      with:
+        image: 'gcr.io/cloudrun/hello'
+        service: 'hello-cloud-run'
