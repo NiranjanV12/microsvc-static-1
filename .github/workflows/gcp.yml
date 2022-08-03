@@ -21,7 +21,7 @@ jobs:
     - name: Push Docker image
       id: push-docker-image
       run: |
-        sudo docker pull gcr.io/ordinal-nectar-353205/microsvc-static-1:v6
+        docker pull gcr.io/ordinal-nectar-353205/microsvc-static-1:v6
                 
     - name: 'Deploy to Cloud Run'
       uses: 'google-github-actions/deploy-cloudrun@v0'
