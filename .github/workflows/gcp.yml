@@ -13,6 +13,16 @@ jobs:
   job_id:
     runs-on: postgres
     steps:
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+    - name: Push Docker image
+      id: push-docker-image
+      run: |
+        sudo docker pull gcr.io/ordinal-nectar-353205/microsvc-static-1:v6
+                
     - name: 'Deploy to Cloud Run'
       uses: 'google-github-actions/deploy-cloudrun@v0'
       with:
