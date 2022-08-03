@@ -7,10 +7,11 @@ name: GCP
 
 on:
   push:
-    branches: [ postgres ]
+    branches: [ my-vm2-runner ]
 
 jobs:
   job_id:
+    runs-on: postgres
     steps:
     - name: 'Deploy to Cloud Run'
       uses: 'google-github-actions/deploy-cloudrun@v0'
