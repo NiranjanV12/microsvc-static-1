@@ -18,7 +18,7 @@ env:
     
 jobs:
   build:
-    runs-on: local-ondc-crun
+    runs-on: my-runner-vm
     outputs:
       o-imagename: ${{ steps.set-image-name.outputs.imagename }}
     steps:
@@ -41,7 +41,7 @@ jobs:
   artifact-upload:
     needs: 
       - build
-    runs-on: local-ondc-crun  #vigyan-registry-vm
+    runs-on: my-runner-vm  #vigyan-registry-vm
     steps:
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
@@ -67,7 +67,7 @@ jobs:
     needs: 
      - build
      - artifact-upload
-    runs-on: local-ondc-crun
+    runs-on: my-runner-vm
     environment: dev
     steps:
     - id: 'auth'
