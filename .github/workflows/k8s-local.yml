@@ -29,7 +29,7 @@ jobs:
     - name: Build with Gradle
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
-        arguments: clean build docker -t "${{ env.IMAGE_NAME}}"
+        arguments: clean build docker
         
   artifact-upload:
     needs: 
