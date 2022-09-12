@@ -1,0 +1,88 @@
+name: Build and Deploy to local k8s
+
+on:
+  push:
+    tags:
+      - "release-*"
+
+env:
+  SERVICE_NAME: microsvc-static-1
+    
+jobs:
+  build:
+    runs-on: my-runner-vm
+    outputs:
+      o-imagename: ${{ steps.set-image-name.outputs.imagename }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set Image Name
+      id: set-image-name
+      run: |
+          echo "IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/${{ env.SERVICE_NAME }}:$(git rev-parse --short HEAD)-${{ env.GITHUB_RUN_NUMBER }}" >>${GITHUB_ENV}
+          echo "::set-output name=imagename::${{ secrets.DOCKERHUB_USERNAME }}/${{ env.SERVICE_NAME }}:$(git rev-parse --short HEAD)-${{ env.GITHUB_RUN_NUMBER }}"
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
+      with:
+        arguments: clean build docker
+        
+  artifact-upload:
+    needs: 
+      - build
+    runs-on: my-runner-vm
+    steps:        
+    - name: Docker login and push
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASS }}
+      run : |
+           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" docker.io   
+           docker push ${{ env.IMAGE_NAME }}
+          
+  deploy-k8s-dev:
+    needs: 
+     - build
+     - artifact-upload
+    runs-on: my-runner-vm
+    environment: dev
+    steps:      
+    - name: kubectl execute
+      run: |
+         kubectl get services -A -o wide
+         
+  deploy-k8s-stag:
+    needs: 
+     - build
+     - artifact-upload
+     - deploy-k8s-dev
+    runs-on: my-runner-vm
+    environment: stag
+    steps:      
+    - name: kubectl execute
+      run: |
+         kubectl get services -A -o wide
+         
+  deploy-k8s-prod:
+    needs: 
+     - build
+     - artifact-upload
+     - deploy-k8s-dev
+     - deploy-k8s-stag
+    runs-on: my-runner-vm
+    environment: prod
+    steps:      
+    - name: kubectl execute
+      run: |
+         kubectl get services -A -o wide
+    
+    - name: upload deployed image name
+      uses: actions/upload-artifact@v3
+      with:
+        name: image-name
+        path: image-name.txt  
+        
