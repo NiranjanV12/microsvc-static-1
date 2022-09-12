@@ -14,7 +14,7 @@ env:
   #DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
   #REPOSITORY: samples # TODO: update to Artifact Registry docker repository
   #IMAGE: static-site
-  PORT: 9001
+  #PORT: 9001
     
 jobs:
   build:
@@ -63,7 +63,7 @@ jobs:
           #docker push ${{needs.build.outputs.o-imagename}}
           docker images       
           
-  deploy-gke:
+  deploy-gke-dev:
     needs: 
      - build
      - artifact-upload
@@ -86,9 +86,61 @@ jobs:
     - name: Set test
       run: |
          kubectl get services -A -o wide
-  
+         
+  deploy-gke-stag:
+    needs: 
+     - build
+     - artifact-upload
+     - deploy-gke-dev
+    runs-on: my-runner-vm
+    environment: stag
+    steps:
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        token_format: 'access_token'
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'    
+
+    - name: Set up GKE credentials
+      uses: google-github-actions/get-gke-credentials@v0
+      with:
+         cluster_name: ${{ env.GKE_CLUSTER }}
+         location: ${{ env.GKE_ZONE }}
+      
+    - name: Set test
+      run: |
+         kubectl get services -A -o wide
+         
+  deploy-gke-prod:
+    needs: 
+     - build
+     - artifact-upload
+     - deploy-gke-dev
+     - deploy-gke-stag
+    runs-on: my-runner-vm
+    environment: prod
+    steps:
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        token_format: 'access_token'
+        credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'    
+
+    - name: Set up GKE credentials
+      uses: google-github-actions/get-gke-credentials@v0
+      with:
+         cluster_name: ${{ env.GKE_CLUSTER }}
+         location: ${{ env.GKE_ZONE }}
+      
+    - name: Set test
+      run: |
+         kubectl get services -A -o wide
+    
     - name: upload deployed image name
       uses: actions/upload-artifact@v3
       with:
         name: image-name
         path: image-name.txt  
+        
