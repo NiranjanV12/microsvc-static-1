@@ -1,0 +1,54 @@
+name: Deploy release to local k8s
+
+on:
+  push:
+    tags:
+      - "release-*"
+#    branches:
+#      - "*"
+env:
+  SERVICE_NAME: microsvc-static-1
+  DOCKER_USER_NAME: niranjanv64
+    
+jobs:
+  artifact-version:
+    runs-on: my-runner-vm
+    outputs:
+      o-imagename: ${{ steps.set-image-name.outputs.imagename }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set Image Name
+      id: set-image-name
+      run: |
+          echo "IMAGE_NAME=${{ env.DOCKER_USER_NAME }}/${{ env.SERVICE_NAME }}:$(git rev-parse --short HEAD)" >>${GITHUB_ENV}
+          echo "::set-output name=imagename::${{ env.DOCKER_USER_NAME }}/${{ env.SERVICE_NAME }}:$(git rev-parse --short HEAD)"
+        
+   
+  deploy-k8s-stag:
+    needs: 
+     - artifact-version
+    runs-on: my-runner-vm
+    environment: stag
+    steps:      
+    - name: kubectl execute
+      run: |
+         kubectl get services -A -o wide
+         
+  deploy-k8s-prod:
+    needs: 
+     - artifact-version    
+     - deploy-k8s-stag
+    runs-on: my-runner-vm
+    environment: prod
+    steps:      
+    - name: kubectl execute
+      run: |
+         kubectl get services -A -o wide
+    
+    - name: upload deployed image name
+      uses: actions/upload-artifact@v3
+      with:
+        name: image-name
+        path: image-name.txt  
+        
