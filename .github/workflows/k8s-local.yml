@@ -4,8 +4,8 @@ on:
   push:
     tags:
       - "release-*"
-    branches:
-      - "*"
+#    branches:
+#      - "*"
 env:
   SERVICE_NAME: microsvc-static-1
   DOCKER_USER_NAME: niranjanv64
