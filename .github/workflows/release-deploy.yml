@@ -78,7 +78,9 @@ jobs:
     steps:      
     - name: kubectl execute
       run: |
+         echo "image: ${{needs.build.outputs.o-imagename}}"
          kubectl get services -A -o wide
+         echo ${{needs.build.outputs.o-imagename}} > image-name.txt
     
     - name: upload deployed image name
       uses: actions/upload-artifact@v3
