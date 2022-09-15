@@ -62,6 +62,8 @@ jobs:
   deploy-k8s-stag:
     needs: 
      - build
+     - artifact-upload
+     - deploy-k8s-dev
     runs-on: my-runner-vm
     environment: stag
     steps:      
@@ -71,7 +73,9 @@ jobs:
          
   deploy-k8s-prod:
     needs: 
-     - build    
+     - build
+     - artifact-upload
+     - deploy-k8s-dev 
      - deploy-k8s-stag
     runs-on: my-runner-vm
     environment: prod
