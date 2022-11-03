@@ -1,4 +1,6 @@
 FROM openjdk:11.0.4-jdk-slim
+#FROM openjdk:11
+#RUN apk --update
 VOLUME /tmp
 ARG DEPENDENCY=build/dependency
 COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib

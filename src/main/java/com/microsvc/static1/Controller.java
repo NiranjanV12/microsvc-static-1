@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 //import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,6 +37,9 @@ private final ApplicationEnvironmentProperties props;
 //@Autowired
 //private OAuth2AuthorizedClientService authorizedClientService;
 
+@Autowired
+private MyDao myDao;
+
 public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProperties props) {
 	this.props = props;
 	this.webClient = webClientBuilder.baseUrl(props.getEnv().getServUrl1()).build();
@@ -58,6 +62,24 @@ public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProp
 		return returnStr;
 		
 	}
+	
+	
+	@GetMapping("/ready")
+	public String ready() {
+		String returnStr = null;
+
+		try {
+			log.log(Level.INFO, "microsvc-static-1 : in ready");
+			returnStr= myDao.dbversion();
+			log.log(Level.INFO, "microsvc-static-1 : ready: "+returnStr);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.log(Level.SEVERE," ",e);
+		}
+		
+		return returnStr;
+		
+	}	
 	
 	@GetMapping("/load")
 	public String load() {

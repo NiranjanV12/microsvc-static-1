@@ -1,14 +1,18 @@
 spring:
    application:
-            name: microsvc-static-1
+     name: microsvc-static-1
    main:
      allow-bean-definition-overriding: true
-
+   datasource:
+     username: postgres
+     password: postgres
+     url: jdbc:postgresql://10.96.229.228:5432/tempdb
+     
 server:
   port: 7050
 app:
  env:
-  color: green
+  color: ENC(lgEuNgkWf5XNa3h6CMTptg==)
   servUrl1: http://localhost:7051/microsvc-static-2
   at_username: user1
   at_password: pass@123
@@ -30,4 +34,7 @@ logging:
         org.hibernate: ERROR
 #    pattern:
 #       console: 
-  
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator  
