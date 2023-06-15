@@ -190,7 +190,7 @@ public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProp
 			log.log(Level.SEVERE," ",e);
 		}
 		
-		return returnStr;
+		return "started";
 		
 	}
 
