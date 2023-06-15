@@ -23,11 +23,29 @@ public class ApplicationEnvironmentProperties {
         private String at_grant_type;
         private String at_client_id;
         private String itrLimit;
-        
+        private String delay;
+        private String trds;
+
 
         
         
-        public String getItrLimit() {
+        public String getTrds() {
+			return trds;
+		}
+
+		public void setTrds(String trds) {
+			this.trds = trds;
+		}
+
+		public String getDelay() {
+			return delay;
+		}
+
+		public void setDelay(String delay) {
+			this.delay = delay;
+		}
+
+		public String getItrLimit() {
 			return itrLimit;
 		}
 
