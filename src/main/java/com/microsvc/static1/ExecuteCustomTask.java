@@ -28,8 +28,8 @@ public class ExecuteCustomTask extends Thread {
 
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException ex) {
-				ex.printStackTrace();
+			} catch (Exception e) {
+				log.log(Level.SEVERE," ",e);
 			}
 		}
 	}
