@@ -3,6 +3,9 @@ package com.microsvc.static1;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import org.json.JSONObject;
@@ -164,6 +167,32 @@ public Controller(WebClient.Builder webClientBuilder, ApplicationEnvironmentProp
 		
 	}
 	
+	
+
+	@GetMapping("/scheduler")
+	public String scheduler() {
+		String returnStr = null;
+
+		try {
+			log.log(Level.INFO, "microsvc-static-1 : scheduler");
+
+			ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(3);
+			int itrLimit=Integer.parseInt(props.getEnv().getItrLimit());
+
+	        ExecuteCustomTask task1 = new ExecuteCustomTask("A",itrLimit);
+	        
+	        scheduler.scheduleWithFixedDelay(task1, 0, 5, TimeUnit.SECONDS);
+	        //scheduler.scheduleWithFixedDelay(task2, 3, 15, TimeUnit.SECONDS);
+	        //scheduler.scheduleWithFixedDelay(task3, 3, 20, TimeUnit.SECONDS);
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			log.log(Level.SEVERE," ",e);
+		}
+		
+		return returnStr;
+		
+	}
 
 //    private OAuth2AuthorizedClient getAuthorizedClient(OAuth2AuthenticationToken authentication) {
 //        return this.authorizedClientService.loadAuthorizedClient(
