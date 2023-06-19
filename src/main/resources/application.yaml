@@ -3,28 +3,29 @@ spring:
             name: microsvc-static-1
    main:
      allow-bean-definition-overriding: true
+   security:
+     user:
+       name: Admin2
+       password: admin2
 
 server:
   port: 7050
   ssl:
-   key-store-type: PKCS12
-   key-store: classpath:keystore/testssl2.keystore
-   key-store-password: 123456
-   key-alias: testssl2
+#   key-store-type: PKCS12
+#   key-store: classpath:keystore/testssl2.keystore
+#   key-store-password: 123456
+#   key-alias: testssl2
+#   enabled: true
+   key-store-type: JKS
+   key-store: classpath:store/ssecty_keystore1.jks
+   key-store-password: changeit
+   key-alias: localhost
    enabled: true
-#   trust-store: /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts
-#   trust-store-password: abcdefghw
-#    enabled: true
-#    key-alias: skipper
-#    key-store: "classpath:keystore/skipper.keystore"
-#    key-store-type: jks
-#    key-store-password: skipper
-#    key-password: skipper   
+   trust-store-type: JKS
+   trust-store: classpath:store/ssecty_truststore1.jks
+   trust-store-password: changeit
+   client-auth: need
 
-#trust:
-# store:
-#  location: classpath:keystore/testssl.keystore
-#  password: testssl
 app:
  env:
   color: green

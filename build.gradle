@@ -56,6 +56,9 @@ testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.2.4' 
     // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy
     testImplementation group: 'net.bytebuddy', name: 'byte-buddy', version: '1.10.14'
     
+    	implementation 'org.springframework.boot:spring-boot-starter-security'
+    	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    
 	
 }
 
