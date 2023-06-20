@@ -2,9 +2,9 @@
 Spring Sec 509 cert and https.
 
 openssl req -x509 -sha256 -days 3650 -newkey rsa:4096 -keyout ssecty_rootCA1.key -out ssecty_rootCA1.crt
-# changeit
+#changeit
 openssl req -new -newkey rsa:4096 -keyout ssecty_localhost1.key -out ssecty_localhost1.csr
-# changeit
+#changeit
 
 
 ssecty_localhost1.ext
